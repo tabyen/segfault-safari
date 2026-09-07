@@ -237,3 +237,13 @@ pre .ctx { color: var(--dim); }
   margin: 14px 0;
 }
 .legend .g { text-align: center; }
+
+#portal-link {
+  color: var(--dim);
+  text-decoration: none;
+}
+
+#portal-link:hover,
+#portal-link:focus {
+  color: var(--green);
+}
