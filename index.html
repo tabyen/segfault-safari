@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<title>Segfault Safari</title>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div id="crt"></div>
+<div id="app">
+  <header id="titlebar">
+    <span class="prompt">$</span> ./segfault-safari <span class="dim">— a stack trace dungeon crawler</span>
+    <span id="titlebar-right" class="dim">[?] help</span>
+  </header>
+  <div id="layout">
+    <div id="main">
+      <canvas id="game" width="840" height="576"></canvas>
+      <div id="log" aria-live="polite"></div>
+    </div>
+    <aside id="sidebar">
+      <section class="panel">
+        <h2>// call stack</h2>
+        <ol id="stack"></ol>
+      </section>
+      <section class="panel">
+        <h2>// process</h2>
+        <div id="hp-row">
+          <span class="statlabel">HP</span>
+          <div id="hpbar"><div id="hpfill"></div></div>
+          <span id="hptext"></span>
+        </div>
+        <div id="stats"></div>
+      </section>
+      <section class="panel">
+        <h2>// keys</h2>
+        <div class="keys dim">
+          move&nbsp;&nbsp;←↑↓→ / wasd / hjkl<br>
+          wait&nbsp;&nbsp;space or .<br>
+          bump into exceptions to attack<br>
+          <span class="k-stairs">&gt;</span> step into the next frame<br>
+          [?] help &nbsp; [R] restart
+        </div>
+      </section>
+    </aside>
+  </div>
+</div>
+<div id="overlay" class="hidden"><div id="overlay-content"></div></div>
+<script src="js/data.js"></script>
+<script src="js/fov.js"></script>
+<script src="js/dungeon.js"></script>
+<script src="js/game.js"></script>
+<script src="js/render.js"></script>
+<script src="js/main.js"></script>
+</body>
+</html>
