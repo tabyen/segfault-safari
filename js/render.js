@@ -88,6 +88,7 @@ function render() {
   renderStats();
   renderLog();
   renderOverlay();
+  if (typeof syncTouchPad === 'function') syncTouchPad();
 }
 
 function renderStack() {
@@ -157,7 +158,8 @@ function titleHTML() {
     <p class="story">A wild <b>SIGSEGV</b> appeared in production.<br>
     Descend the call stack, frame by frame, to the root cause — and squash <b>THE BUG</b>.</p>
     ${legendHTML()}
-    <div class="press">[ press any key to attach debugger ]</div>`;
+    <div class="press">[ press any key to attach debugger ]</div>
+    <div class="press touch-hint">[ tap to attach debugger ]</div>`;
 }
 
 function deadHTML() {
@@ -167,7 +169,8 @@ function deadHTML() {
     <p>${playerTitle()}, lvl ${G.player.lvl}, crashed in <b>${CALL_STACK[G.depth].fn}()</b> —
     frame #${G.depth} of ${MAX_DEPTH}, after ${G.turns} turns and ${G.kills} squashed exceptions.</p>
     <p class="dim">Tip: breakpoints ● only catch one crash each. Save them for when things get hairy.</p>
-    <div class="press">[ press R to re-run the process ]</div>`;
+    <div class="press">[ press R to re-run the process ]</div>
+    <div class="press touch-hint">[ tap to re-run the process ]</div>`;
 }
 
 function wonHTML() {
@@ -186,7 +189,8 @@ function wonHTML() {
     <p>The stack unwinds cleanly, all ${CALL_STACK.length} frames of it.
     Production is green. Nobody will ever know.</p>
     <p>${G.turns} turns · ${G.kills} exceptions squashed · retired a lvl ${G.player.lvl} ${playerTitle()}</p>
-    <div class="press">[ press R to chase another bug ]</div>`;
+    <div class="press">[ press R to chase another bug ]</div>
+    <div class="press touch-hint">[ tap to chase another bug ]</div>`;
 }
 
 function helpHTML() {
@@ -201,7 +205,8 @@ function helpHTML() {
     ${legendHTML()}
     <p class="dim">Each level is one stack frame. The <span class="k-stairs">&gt;</span> steps into
     the next call. There is no going back up until the bug is fixed.</p>
-    <div class="press">[ press ? to close ]</div>`;
+    <div class="press">[ press ? to close ]</div>
+    <div class="press touch-hint">[ tap to close ]</div>`;
 }
 
 function renderOverlay() {

@@ -21,10 +21,12 @@ body {
   color: var(--fg);
   font-family: "JetBrains Mono", "Fira Code", Menlo, Consolas, monospace;
   min-height: 100vh;
+  min-height: 100dvh;
   display: flex;
   align-items: flex-start;
   justify-content: center;
   padding: 16px;
+  padding-bottom: max(16px, env(safe-area-inset-bottom));
 }
 
 /* subtle CRT scanlines */
@@ -246,4 +248,75 @@ pre .ctx { color: var(--dim); }
 #portal-link:hover,
 #portal-link:focus {
   color: var(--green);
+}
+
+#touch-pad {
+  display: none;
+}
+
+#overlay-content .press.touch-hint { display: none; }
+
+@media (max-width: 960px) {
+  body {
+    padding: 8px;
+    padding-bottom: max(8px, env(safe-area-inset-bottom));
+  }
+  #app { width: 100%; max-width: none; }
+  #layout { flex-direction: column; }
+  canvas#game {
+    width: 100%;
+    height: auto;
+    border-right: none;
+    border-bottom: 1px solid var(--border);
+    touch-action: manipulation;
+  }
+  #sidebar { width: 100%; }
+  #log { height: 96px; }
+  #overlay-content {
+    max-width: calc(100vw - 24px);
+    padding: 20px 16px;
+    max-height: 90dvh;
+    overflow-y: auto;
+  }
+}
+
+@media (pointer: coarse) {
+  #touch-pad {
+    display: flex;
+    position: fixed;
+    right: max(12px, env(safe-area-inset-right));
+    bottom: max(12px, env(safe-area-inset-bottom));
+    z-index: 60;
+    gap: 10px;
+    align-items: flex-end;
+  }
+  #touch-pad[hidden] { display: none; }
+  #touch-pad button {
+    width: 52px;
+    height: 52px;
+    border: 1px solid var(--border);
+    background: rgba(13, 19, 28, 0.88);
+    color: var(--cyan);
+    font-family: inherit;
+    font-size: 18px;
+    border-radius: 8px;
+    -webkit-tap-highlight-color: transparent;
+  }
+  #touch-pad [data-act="wait"] {
+    font-size: 11px;
+    letter-spacing: 0.08em;
+    color: var(--yellow);
+  }
+  #touch-pad .dpad {
+    display: grid;
+    grid-template-columns: 52px 52px 52px;
+    grid-template-rows: 52px 52px 52px;
+    gap: 4px;
+  }
+  #touch-pad [data-move="0,-1"] { grid-column: 2; grid-row: 1; }
+  #touch-pad [data-move="-1,0"] { grid-column: 1; grid-row: 2; }
+  #touch-pad [data-move="1,0"] { grid-column: 3; grid-row: 2; }
+  #touch-pad [data-move="0,1"] { grid-column: 2; grid-row: 3; }
+  #overlay-content .press { display: none; }
+  #overlay-content .press.touch-hint { display: block; }
 }

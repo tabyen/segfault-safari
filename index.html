@@ -3,7 +3,7 @@
 <head>
 <meta charset="utf-8">
 <title>Segfault Safari</title>
-<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover, maximum-scale=1">
 <link rel="stylesheet" href="style.css">
 </head>
 <body>
@@ -35,8 +35,8 @@
       <section class="panel">
         <h2>// keys</h2>
         <div class="keys dim">
-          move&nbsp;&nbsp;←↑↓→ / wasd / hjkl<br>
-          wait&nbsp;&nbsp;space or .<br>
+          move&nbsp;&nbsp;←↑↓→ / wasd / hjkl / tap<br>
+          wait&nbsp;&nbsp;space or . or tap yourself<br>
           bump into exceptions to attack<br>
           <span class="k-stairs">&gt;</span> step into the next frame<br>
           [?] help &nbsp; [R] restart
@@ -46,6 +46,15 @@
   </div>
 </div>
 <div id="overlay" class="hidden"><div id="overlay-content"></div></div>
+<div id="touch-pad" hidden>
+  <button type="button" data-act="wait">WAIT</button>
+  <div class="dpad">
+    <button type="button" data-move="0,-1">▲</button>
+    <button type="button" data-move="-1,0">◀</button>
+    <button type="button" data-move="1,0">▶</button>
+    <button type="button" data-move="0,1">▼</button>
+  </div>
+</div>
 <script src="js/data.js"></script>
 <script src="js/fov.js"></script>
 <script src="js/dungeon.js"></script>
